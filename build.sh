@@ -12,5 +12,5 @@ zip -g function.zip ${OLD_PWD}/v-env/lambda_function.py
 pushd deploy
     terraform init
     terraform plan -var project=staging -var function_path=${FULL_PATH}
-    #terraform apply -var project=staging -var function_path=${FULL_PATH}
+    terraform apply -var project=staging -var function_path=${FULL_PATH}
 popd
