@@ -1,0 +1,12 @@
+**/.ssh/id_*
+**/.ssh/*_id_*
+**/.ssh/known_hosts
+**./*.key
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
