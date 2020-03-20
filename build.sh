@@ -7,7 +7,13 @@ pushd v-env/lib/python3.7/site-packages
     zip -r9 ${FULL_PATH} .
 popd
 
-zip -g function.zip ${OLD_PWD}/v-env/lambda_function.py
+pwd
+
+cp v-env/lambda_function.py .
+
+zip -g function.zip lambda_function.py
+
+rm lambda_function.py
 
 pushd deploy
     terraform init
