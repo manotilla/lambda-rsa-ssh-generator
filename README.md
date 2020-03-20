@@ -2,25 +2,12 @@
 
 This repository is containing lambda function that have a property for generating SSH key pair and then store them to the S3 bucket instead of local filesystem.
 
-## Dependecies
+## Build and Deploy
 
+You can build generator function with docker, and then you can deploy with from container.
 
-* virtualenv
-
-That script is containing script for end to end local dependency environment .
-
+For configure the aws cli you should set AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY related with your aws credentials
 
 ```
-    $ virtualenv v-env
-    $ source v-env/bin/activate
-    $ pip3 install cryptography
-    $ pip3 install boto3
-```
-
-## Build and Deploy :) 
-
-You need terraform to deploy or you can easily deploy via aws cli . I have prefer the terraform .
-
-```
-$ ./build.sh
+    $ aws lambda update-function-code --function-name staging-ssh-key-generator  --zip-file fileb://function.zip
 ```

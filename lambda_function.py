@@ -2,6 +2,7 @@ import boto3
 from cryptography.hazmat.primitives import serialization as crypto_serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.backends import default_backend as crypto_default_backend
+
 import os
 
 def upload_s3(files = ["/tmp/private.key", "/tmp/pub.key"]):
@@ -12,9 +13,9 @@ def upload_s3(files = ["/tmp/private.key", "/tmp/pub.key"]):
     for file in files:
         obj = str.split(file, "/")
         s3_client.meta.client.upload_file(file, BUCKET, obj[2])
+    
 
-
-def generate_keys(key_size=2048):
+def generate_keys(bits=2048):
 
     key = rsa.generate_private_key(
         backend=crypto_default_backend(),
@@ -43,5 +44,7 @@ def lambda_handler(event, context):
     with open("/tmp/pub.key", 'wb') as content_file:
         os.chmod("/tmp/pub.key", 400)
         content_file.write(keys[1])
-        
+    
+    print("Keys has been generated")
+
     upload_s3()
